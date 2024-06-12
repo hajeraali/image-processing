@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>⟢ Graphics Studio ⟢</h1>
+        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+            <label for="imageInput" class="custom-file-upload">
+                Select File
+            </label> &nbsp;&nbsp;
+            <input type="file" name="image" id="imageInput" accept="image/*">
+            <button type="submit" id="uploadButton">Upload</button>
+        </form>
+        <br>
+        <div class="slider-container">
+            <label for="blurSlider">Blur:</label> 
+            <input type="range" id="blurSlider" min="1" max="21" step="2" value="1"> &nbsp;
+            <label for="contrastSlider">Contrast:</label>
+            <input type="range" id="contrastSlider" min="1" max="3" step="0.1" value="1"> &nbsp;
+            <label for="sharpenSlider">Sharpen:</label>
+            <input type="range" id="sharpenSlider" min="1" max="21" step="2" value="1">
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="image-container">
+            <div class="image-wrapper">
+                <div class="image-placeholder" id="originalImagePlaceholder">
+                    <div class="placeholder-icon">📷</div>
+                    <div class="placeholder-text">Original Image</div>
+                </div>
+                <img id="originalImage" src="" alt="">
+            </div>
+            <div class="image-wrapper">
+                <div class="image-placeholder" id="processedImagePlaceholder">
+                    <div class="placeholder-icon">🔄</div>
+                    <div class="placeholder-text">Processing...</div>
+                </div>
+                <img id="processedImage" src="" alt="">
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='2.js') }}"></script>
+</body>
+</html>

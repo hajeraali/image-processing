@@ -1,0 +1,131 @@
+/* Global Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #B3C8CF;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container Styles */
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #BED7DC;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family:'Courier New', Courier, monospace; /* Change font for h1 */
+    color: #4273b3;
+}
+h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #4273b3;
+    font-family: 'Courier New', Courier, monospace; /* Global Styles */
+}
+/* Form Styles */
+form {
+    text-align: center;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    background-color:#4273b3;
+    color: whitesmoke ;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family:'Courier New', Courier, monospace /* Change font for custom file upload */
+}
+
+.custom-file-upload:hover {
+    background-color: #0056b3;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#uploadButton {
+    background-color:#4273b3;
+    color: whitesmoke;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family:'Courier New', Courier, monospace /* Change font for upload button */
+}
+
+#uploadButton:hover {
+    background-color: #0056b3;
+}
+
+/* Slider Container */
+.slider-container {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4273b3;
+    font-weight: 550;
+}
+
+.slider-container label {
+    margin-right: 10px;
+}
+
+/* Image Styles */
+/* Image Styles */
+.image-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.image-wrapper {
+    flex: 0 0 48%; /* Adjusted width */
+    text-align: center;
+}
+
+img {
+    max-width: 100%; /* Set maximum width to ensure image does not exceed container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 4px;
+}
+/* Placeholder Styles */
+.image-placeholder {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #BED7DC;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.placeholder-icon {
+    font-size: 36px;
+}
+
+.placeholder-text {
+    margin-top: 8px;
+    font-size: 16px;
+    color:#4273b3;
+    font-weight: 400;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, #ccc, #eee, #ccc); /* Gradient border */
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* Subtle box-shadow */
+}
+
