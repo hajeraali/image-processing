@@ -33,12 +33,16 @@ def upload_file():
 @app.route('/process', methods=['POST'])
 def process_file():
     data = request.json
-    filepath = os.path.join(app.config['UPLOAD_FOLDER'], data['filename'])
+    filepath = os.path.join(app.config['UPLOAD_FOLDER'], data['filename']) if data['filename'] in os.listdir(app.config['UPLOAD_FOLDER']) else os.path.join(app.config['PROCESSED_FOLDER'], data['filename'])
     operation = data['operation']
     value = data['value']
     
-    output_filename = process_image(filepath, operation, value, app.config['PROCESSED_FOLDER'])
-    return jsonify({'processedImagePath': f"/processed/{output_filename}"})
+    if operation == 'detect_white':
+        output_filename = process_image(filepath, operation, value, app.config['PROCESSED_FOLDER'])
+    else:
+        output_filename = process_image(filepath, operation, value, app.config['PROCESSED_FOLDER'])
+    
+    return jsonify({'processedImagePath': f"/processed/{output_filename}", 'newProcessedFilename': output_filename})
 
 @app.route('/processed/<filename>')
 def get_processed_file(filename):
