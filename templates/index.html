@@ -29,22 +29,29 @@
             <div class="image-preview">
                 <div class="image-container">
                     <div class="image-wrapper">
+                        <div class="image-placeholder" id="originalImagePlaceholder">
+                            <div class="placeholder-icon">📷</div>
+                            <div class="placeholder-text">Original Image</div>
+                        </div>
+                        <img id="originalImage" src="" alt="">
+                    </div>
+                    <div class="image-wrapper">
                         <div class="image-placeholder" id="processedImagePlaceholder">
                             <div class="placeholder-icon">📷</div>
                             <div class="placeholder-text">Processing...</div>
                         </div>
                         <img id="processedImage" src="" alt="">
-                        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data" style="margin-top: 10px;">
-                            <div class="upload-section">
-                                <label for="imageInput" class="custom-file-upload">
-                                    Select File
-                                </label>
-                                <input type="file" name="image" id="imageInput" accept="image/*" style="display: none;">
-                            </div>
-                            <button type="submit" id="uploadButton">Upload</button>
-                        </form>
                     </div>
                 </div>
+                <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data" style="margin-top: 10px;">
+                    <div class="upload-section">
+                        <label for="imageInput" class="custom-file-upload">
+                            Select File
+                        </label>
+                        <input type="file" name="image" id="imageInput" accept="image/*" style="display: none;">
+                    </div>
+                    <button type="submit" id="uploadButton">Upload</button>
+                </form>
             </div>
         </div>
     </div>

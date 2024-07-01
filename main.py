@@ -24,25 +24,39 @@ def process_image(filepath, operation, value, output_folder):
         processed_image = cv2.filter2D(image, -1, kernel)
 
     elif operation == 'invert':
-        # Assume the mask is a single-channel binary image
         mask = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        _, mask = cv2.threshold(mask, 128, 255, cv2.THRESH_BINARY)  # Convert to binary mask
-        processed_image = cv2.bitwise_not(mask)  # Invert the mask
+        _, mask = cv2.threshold(mask, 128, 255, cv2.THRESH_BINARY)
+        processed_image = cv2.bitwise_not(mask)
 
     elif operation == 'detect_white':
-        # Convert image to grayscale
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        
-        # Threshold to find white regions
         _, thresh = cv2.threshold(gray, 240, 255, cv2.THRESH_BINARY)
-        
-        # Find contours
         contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        
-        # Draw contours on original image (copy)
         processed_image = image.copy()
-        cv2.drawContours(processed_image, contours, -1, (0, 0, 255), 2)  # Draw red contours
-    
+        cv2.drawContours(processed_image, contours, -1, (0, 0, 255), 2)
+
+    elif operation == 'detect_color':
+        # Convert selected color to BGR (OpenCV format)
+        hex_color = value.lstrip('#')
+        bgr_color = tuple(int(hex_color[i:i+2], 16) for i in (4, 2, 0))
+        color_np = np.array([[bgr_color]], dtype=np.uint8)
+        
+        # Convert BGR to HSV for color detection
+        hsv_color = cv2.cvtColor(color_np, cv2.COLOR_BGR2HSV)[0][0]
+        lower_bound = np.array([hsv_color[0] - 10, 100, 100])
+        upper_bound = np.array([hsv_color[0] + 10, 255, 255])
+        
+        # Convert image to HSV and create mask for the selected color
+        hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        mask = cv2.inRange(hsv_image, lower_bound, upper_bound)
+        
+        # Find contours in the mask
+        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        
+        # Draw contours on the processed image
+        processed_image = image.copy()
+        cv2.drawContours(processed_image, contours, -1, (0, 255, 0), 2)
+
     else:
         return None
     
